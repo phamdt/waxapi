@@ -1,0 +1,207 @@
+FORMAT: X-1A
+HOST: http://www.waxlrs.com
+
+# Accounts API
+Welcome to the WaxLRS Accounts API documentation which provides information on creating and retrieving information about subaccounts.
+Subaccounts can help you segment your data in a way that corresponds to your organization. For example, company, 'A', may have 32 departments.
+Company 'A' can have one WaxLRS account and then create 32 subaccounts, one for each department. All billing related processes and
+information are handled through the main account. 
+
+
+## About This Documentation
+
+### Host
+While Apiary lists the API host as http://www.waxlrs.com/, each of the endpoints below must include the main account in the url as follows: 
+http://main_account_name.waxlrs.com/
+
+### Site Name
+Many of the examples below make reference to "{subaccount_site_name}". As you may have guessed, this is meant to be substituted with an actual name 
+for an existing subaccount. 
+
+### Authentication
+Note that each of the examples below require the usage of basic authorization as part of the request. 
+
+### Questions?
+We hope you find this documentation useful. For any questions or feedback feel free to use the comments feature found in each HTTP method or contact us 
+through our <a href="http://saltbox.uservoice.com/">support page</a>.
+
+
+# Group Subaccounts 
+
+## /TCAPI/_api/accounts/subaccounts
+
+### Retrieve subaccounts [GET]
+Retrieve list of all subaccounts with information for site name, url, basic credentials url, and OAuth credentials url
+
++ Request
+    + Headers
+
+            Authorization: Basic QWxhZGRpbjpvcGVuIHNlc2FtZQZQ
+    
++ Response 200 (application/json)
+    
+        [
+            {
+                "site": "subaccount1_site_name",
+                "url": "http://subaccount1_site_name.waxlrs.com",
+                "basic_credentials": "http://yourAccount.waxlrs.com/TCAPI/_api/accounts/subaccounts/subaccount1_site_name/credentials/basic",
+                "oauth_credentials": "http://yourAccount.waxlrs.com/TCAPI/_api/accounts/subaccounts/subaccount1_site_name/credentials/oauth"
+            },
+            {
+                "site": "subaccount2_site_name",
+                "url": "http://subaccount2_site_name.waxlrs.com",
+                "basic_credentials": "http://yourAccount.waxlrs.com/TCAPI/_api/accounts/subaccounts/subaccount2_site_name/credentials/basic",
+                "oauth_credentials": "http://yourAccount.waxlrs.com/TCAPI/_api/accounts/subaccounts/subaccount2_site_name/credentials/oauth"
+            }
+        ]
+    
+
+### Create new subaccount [POST]
+Create new subaccount by posting your desired subaccount name and corresponding email
+
++ Request (application/json)
+    + Headers
+
+            Authorization: Basic QWxhZGRpbjpvcGVuIHNlc2FtZQZQ
+    
+    + Body
+            
+            {
+                "site": "subaccount_site_name", 
+                "email": "creator_email@example.com"
+            }
+
+
++ Response 200 (application/json)
+
+        {
+            "site": "subaccount_site_name",
+            "url": "http://subaccount_site_name.waxlrs.com",
+            "basic_credentials": "http://yourAccount.waxlrs.com/TCAPI/_api/accounts/subaccounts/subaccount_site_name/credentials/basic",
+            "oauth_credentials": "http://yourAccount.waxlrs.com/TCAPI/_api/accounts/subaccounts/subaccount_site_name/credentials/oauth"
+        }
+
+
+## Group One Subaccount 
+
+## /TCAPI/_api/accounts/subaccounts/{subaccount_site_name}
+
+## Retrieve subaccount [GET]
+Retrieve one subaccount with information for site name, url, basic credentials url, and OAuth credentials url
+
++ Parameters 
+    
+    +   subaccount_site_name (required, string, `example_name`) ... name of subaccount
+        
++ Request
+        
+    + Headers
+
+            Authorization: Basic QWxhZGRpbjpvcGVuIHNlc2FtZQZQ
+    
++ Response 200 (application/json)
+    
+        {
+            "site": "subaccount_site_name",
+            "url": "http://subaccount_site_name.waxlrs.com",
+            "basic_credentials": "http://yourAccount.waxlrs.com/TCAPI/_api/accounts/subaccounts/subaccount_site_name/credentials/basic",
+            "oauth_credentials": "http://yourAccount.waxlrs.com/TCAPI/_api/accounts/subaccounts/subaccount_site_name/credentials/oauth"
+        }
+
+# Group Basic Credentials 
+
+## /TCAPI/_api/accounts/subaccounts/{subaccount_site_name}/credentials/basic
+
+### Retrieve basic credentials [GET]
+Retrieve all basic credentials for specified subaccount
+
++ Request
+
+    + Headers
+
+            Authorization: Basic QWxhZGRpbjpvcGVuIHNlc2FtZQZQ
+    
++ Response 200 (application/json)
+
+        {
+            "basic_credentials": [
+                { "login": "oTSjEY4rnCqQ9JwkIy03", "password": "vGq7DZViN0CwbXMiGMqT", "created": "2013-09-23T20:41:44.316602Z" },
+                { "login": "akcqNUKKOMzG8WwaZISv", "password": "oyBnq2urPEh0EF5QzJZ8", "created": "2013-09-25T20:41:12.205101Z" }
+            ]
+        }
+
+### Generate basic credential [POST]
+Generate basic credential for specified subaccount
+
++ Request
+    + Headers
+
+            Authorization: Basic QWxhZGRpbjpvcGVuIHNlc2FtZQZQ
+            
++ Response 200 (application/json)
+    
+        { 
+            "login": "oTSjEY4rnCqQ9JwkIy03", "password": "vGq7DZViN0CwbXMiGMqT", "created": "2013-09-23T20:41:44.316602Z"
+        }
+
+# Group OAuth Credentials 
+
+## /TCAPI/_api/accounts/subaccounts/{subaccount_site_name}/credentials/oauth
+
+### Retrieve OAuth credentials [GET]
+Retrieve all OAuth credentials for specified subaccount
+
++ Request
+    + Headers
+
+            Authorization: Basic QWxhZGRpbjpvcGVuIHNlc2FtZQZQ
+            
++ Response 200 (application/json)
+    
+        {
+            "oauth_credentials": [
+                { "consumer_key": "WGQ17ukZHstLfNo1HwXT", "secret_key": "iSe4BOHtByYWXyuZWxFx", "created": "2013-09-23T20:41:44.316602Z" },
+                { "consumer_key": "9gMaMUrwEeWCLEwwcYCm", "secret_key": "KSRNCMZ6QUKLuJlpjyge", "created": "2013-09-23T20:43:09.311111Z" }
+            ]
+        }
+
+
+### Generate OAuth credential [POST]
+Generate OAuth credential for specified subaccount
+
++ Request
+    + Headers
+
+            Authorization: Basic QWxhZGRpbjpvcGVuIHNlc2FtZQZQ
+            
++ Response 200 (application/json)
+    
+        { 
+            "consumer_key": "WGQ17ukZHstLfNo1HwXT", "secret_key": "iSe4BOHtByYWXyuZWxFx", "created": "2013-09-23T20:41:44.316602Z" 
+        }
+
+# Group Reset Password Link 
+When a subaccount user has lost or forgotten their password, this request can be used to generate a reset password link. Each link is unique to the email that is sent as part of the request. Upon visiting this link, a user can enter a new password into the browser. The reset password link expires after (a period of time?). 
+
+## /TCAPI/_api/accounts/subaccounts/{subaccount_site_name}/reset_password
+
+### Generate Reset Password Link [POST]
+Generate reset password link for specified subaccount
+
++ Request
+
+    + Headers
+
+            Authorization: Basic QWxhZGRpbjpvcGVuIHNlc2FtZQZQ
+    
+    + Body
+    
+            {
+                "email": "user_email@example.com"
+            }
+            
++ Response 200 (application/json)
+
+        { 
+            "reset_link": "https://subaccount_site_name.waxlrs.com/reset?token=WyJleGFtcGxlIiwiYmF0ZmxlY2tAZXhhbXBsZS5jb20iXQ.BSJvDg.WJzyeRFbOTjkr37j6W2a8lSRisE" 
+        }
