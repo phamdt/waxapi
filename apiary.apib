@@ -40,10 +40,10 @@ Retrieve list of all subaccounts with information for site name, url, basic cred
     
         [
             {
-                "site": "eLearnHub",
-                "url": "https://eLearnHub.waxlrs.com",
-                "basic_credentials": "https://eLearners.waxlrs.com/TCAPI/_api/accounts/subaccounts/eLearnHub/credentials/basic",
-                "oauth_credentials": "https://eLearners.waxlrs.com/TCAPI/_api/accounts/subaccounts/eLearnHub/credentials/oauth"
+                "site": "yearnin4eLearnin",
+                "url": "https://yearnin4eLearnin.waxlrs.com",
+                "basic_credentials": "https://eLearners.waxlrs.com/TCAPI/_api/accounts/subaccounts/yearnin4eLearnin/credentials/basic",
+                "oauth_credentials": "https://eLearners.waxlrs.com/TCAPI/_api/accounts/subaccounts/yearnin4eLearnin/credentials/oauth"
             },
             {
                 "site": "readersAreLeaders",
@@ -73,12 +73,11 @@ Create new subaccount by posting your desired subaccount name and corresponding 
 + Response 200 (application/json)
 
         {
-            "site": rapid_authoring_anonymous,
+            "site": "rapid_authoring_anonymous",
             "url": "http://rapid_authoring_anonymous.waxlrs.com",
             "basic_credentials": "http://eLearners.waxlrs.com/TCAPI/_api/accounts/subaccounts/rapid_authoring_anonymous/credentials/basic",
             "oauth_credentials": "http://eLearners.waxlrs.com/TCAPI/_api/accounts/subaccounts/rapid_authoring_anonymous/credentials/oauth"
         }
-
 
 ## Group One Subaccount 
 
@@ -100,7 +99,7 @@ Retrieve one subaccount with information for site name, url, basic credentials u
 + Response 200 (application/json)
     
         {
-            "site": rapid_authoring_anonymous,
+            "site": "rapid_authoring_anonymous",
             "url": "http://rapid_authoring_anonymous.waxlrs.com",
             "basic_credentials": "http://eLearners.waxlrs.com/TCAPI/_api/accounts/subaccounts/rapid_authoring_anonymous/credentials/basic",
             "oauth_credentials": "http://eLearners.waxlrs.com/TCAPI/_api/accounts/subaccounts/rapid_authoring_anonymous/credentials/oauth"
@@ -183,7 +182,7 @@ When a subaccount user has lost or forgotten their password, this request can be
 
 This endpoint can also be used to create a user for the subaccount. Upon using this endpoint, if Wax does not recognize the email as part of the subaccount's associated list of users, a new user account will be created. 
 
-## /TCAPI/_api/accounts/subaccounts/{subaccount_site_name}/reset_password?{email=something@example.com}
+## /TCAPI/_api/accounts/subaccounts/{subaccount_site_name}/reset_password?{email}
 
 ### Generate Reset Password Link [POST]
 Generate reset password link for specified subaccount
