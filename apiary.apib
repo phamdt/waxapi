@@ -28,6 +28,20 @@ We hope you find this documentation useful. For any questions or feedback feel f
 
 ## /TCAPI/_api/accounts/subaccounts
 
+## Description of Usual Server Responses
+
+- 200 OK \- a successful request, you were able to retrieve subaccounts or create a new one
+- 400 Bad Request \- the request could not be understood or was missing required information
+    - Possible detail messages: 
+        - "An email is required to request a password reset link but was not provided"
+        - "Malformed reset token", this may have resulted from copy and pasting the password reset link incorrectly
+- 403 Forbidden \- This is most likely because the reset password token is expired
+    - Possible detail message: "Expired reset token" 
+- 404 Not Found \- make sure you wrote out the endpoint/link correctly, otherwise you may be requesting a subaccount that does not exist
+    - Possible detail message: "Subaccount, {subaccount_site_name}, does not exist."
+- 409 Conflict \- you are attempting to create a subaccount with a site name that already exists
+    - Possible detail message: "That name is already in use"
+
 ### Retrieve subaccounts [GET]
 Retrieve list of all subaccounts with information for site name, url, basic credentials url, and OAuth credentials url
 
@@ -79,11 +93,11 @@ Create new subaccount by posting your desired subaccount name and corresponding 
             "oauth_credentials": "http://eLearners.waxlrs.com/TCAPI/_api/accounts/subaccounts/rapid_authoring_anonymous/credentials/oauth"
         }
 
-## Group One Subaccount 
+# Group One Subaccount 
 
 ## /TCAPI/_api/accounts/subaccounts/{subaccount_site_name}
 
-## Retrieve subaccount [GET]
+### Retrieve subaccount [GET]
 Retrieve one subaccount with information for site name, url, basic credentials url, and OAuth credentials url
 
 + Parameters 
