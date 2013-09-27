@@ -1,5 +1,5 @@
 FORMAT: X-1A
-HOST: http://www.waxlrs.com
+HOST: https://www.waxlrs.com
 
 # Accounts API
 Welcome to the WaxLRS Accounts API documentation which provides information on creating and retrieving information about subaccounts.
@@ -12,18 +12,16 @@ information are handled through the main account.
 
 ### Host
 While Apiary lists the API host as http://www.waxlrs.com/, each of the endpoints below must include the main account in the url as follows: 
-http://main_account_name.waxlrs.com/
+https://main_account_name.waxlrs.com/
 
 ### Site Name
-Many of the examples below make reference to "{subaccount_site_name}". As you may have guessed, this is meant to be substituted with an actual name 
-for an existing subaccount. 
+Many of the examples below make reference to "{subaccount_site_name}". As you may have guessed, this is meant to be substituted with an actual name for an existing subaccount. 
 
 ### Authentication
 Note that each of the examples below require the usage of basic authorization as part of the request. 
 
 ### Questions?
-We hope you find this documentation useful. For any questions or feedback feel free to use the comments feature found in each HTTP method or contact us 
-through our <a href="http://saltbox.uservoice.com/">support page</a>.
+We hope you find this documentation useful. For any questions or feedback feel free to use the comments feature found in each HTTP method or contact us through our <a href="http://saltbox.uservoice.com/">support page</a>.
 
 
 # Group Subaccounts 
@@ -42,16 +40,16 @@ Retrieve list of all subaccounts with information for site name, url, basic cred
     
         [
             {
-                "site": "subaccount1_site_name",
-                "url": "http://subaccount1_site_name.waxlrs.com",
-                "basic_credentials": "http://yourAccount.waxlrs.com/TCAPI/_api/accounts/subaccounts/subaccount1_site_name/credentials/basic",
-                "oauth_credentials": "http://yourAccount.waxlrs.com/TCAPI/_api/accounts/subaccounts/subaccount1_site_name/credentials/oauth"
+                "site": "eLearnHub",
+                "url": "https://eLearnHub.waxlrs.com",
+                "basic_credentials": "https://eLearners.waxlrs.com/TCAPI/_api/accounts/subaccounts/eLearnHub/credentials/basic",
+                "oauth_credentials": "https://eLearners.waxlrs.com/TCAPI/_api/accounts/subaccounts/eLearnHub/credentials/oauth"
             },
             {
-                "site": "subaccount2_site_name",
-                "url": "http://subaccount2_site_name.waxlrs.com",
-                "basic_credentials": "http://yourAccount.waxlrs.com/TCAPI/_api/accounts/subaccounts/subaccount2_site_name/credentials/basic",
-                "oauth_credentials": "http://yourAccount.waxlrs.com/TCAPI/_api/accounts/subaccounts/subaccount2_site_name/credentials/oauth"
+                "site": "readersAreLeaders",
+                "url": "https://readersAreLeaders.waxlrs.com",
+                "basic_credentials": "https://eLearners.waxlrs.com/TCAPI/_api/accounts/subaccounts/readersAreLeaders/credentials/basic",
+                "oauth_credentials": "http://eLearners.waxlrs.com/TCAPI/_api/accounts/subaccounts/readersAreLeaders/credentials/oauth"
             }
         ]
     
@@ -67,18 +65,18 @@ Create new subaccount by posting your desired subaccount name and corresponding 
     + Body
             
             {
-                "site": "subaccount_site_name", 
-                "email": "creator_email@example.com"
+                "site": "rapid_authoring_anonymous", 
+                "email": "iHeartRapidAuthoring143@example.com"
             }
 
 
 + Response 200 (application/json)
 
         {
-            "site": "subaccount_site_name",
-            "url": "http://subaccount_site_name.waxlrs.com",
-            "basic_credentials": "http://yourAccount.waxlrs.com/TCAPI/_api/accounts/subaccounts/subaccount_site_name/credentials/basic",
-            "oauth_credentials": "http://yourAccount.waxlrs.com/TCAPI/_api/accounts/subaccounts/subaccount_site_name/credentials/oauth"
+            "site": rapid_authoring_anonymous,
+            "url": "http://rapid_authoring_anonymous.waxlrs.com",
+            "basic_credentials": "http://eLearners.waxlrs.com/TCAPI/_api/accounts/subaccounts/rapid_authoring_anonymous/credentials/basic",
+            "oauth_credentials": "http://eLearners.waxlrs.com/TCAPI/_api/accounts/subaccounts/rapid_authoring_anonymous/credentials/oauth"
         }
 
 
@@ -91,7 +89,7 @@ Retrieve one subaccount with information for site name, url, basic credentials u
 
 + Parameters 
     
-    +   subaccount_site_name (required, string, `example_name`) ... name of subaccount
+    +   subaccount_site_name (required, string, `fun_example_name`) ... name of subaccount
         
 + Request
         
@@ -102,10 +100,10 @@ Retrieve one subaccount with information for site name, url, basic credentials u
 + Response 200 (application/json)
     
         {
-            "site": "subaccount_site_name",
-            "url": "http://subaccount_site_name.waxlrs.com",
-            "basic_credentials": "http://yourAccount.waxlrs.com/TCAPI/_api/accounts/subaccounts/subaccount_site_name/credentials/basic",
-            "oauth_credentials": "http://yourAccount.waxlrs.com/TCAPI/_api/accounts/subaccounts/subaccount_site_name/credentials/oauth"
+            "site": rapid_authoring_anonymous,
+            "url": "http://rapid_authoring_anonymous.waxlrs.com",
+            "basic_credentials": "http://eLearners.waxlrs.com/TCAPI/_api/accounts/subaccounts/rapid_authoring_anonymous/credentials/basic",
+            "oauth_credentials": "http://eLearners.waxlrs.com/TCAPI/_api/accounts/subaccounts/rapid_authoring_anonymous/credentials/oauth"
         }
 
 # Group Basic Credentials 
@@ -181,27 +179,28 @@ Generate OAuth credential for specified subaccount
         }
 
 # Group Reset Password Link 
-When a subaccount user has lost or forgotten their password, this request can be used to generate a reset password link. Each link is unique to the email that is sent as part of the request. Upon visiting this link, a user can enter a new password into the browser. The reset password link expires after (a period of time?). 
+When a subaccount user has lost or forgotten their password, this request can be used to generate a reset password link. Each link is unique to the email that is sent as part of the request. Upon visiting this link, a user can enter a new password into the browser. The reset password link expires after (a period of time?).
 
-## /TCAPI/_api/accounts/subaccounts/{subaccount_site_name}/reset_password
+This endpoint can also be used to create a user for the subaccount. Upon using this endpoint, if Wax does not recognize the email as part of the subaccount's associated list of users, a new user account will be created. 
+
+## /TCAPI/_api/accounts/subaccounts/{subaccount_site_name}/reset_password{?email}
 
 ### Generate Reset Password Link [POST]
 Generate reset password link for specified subaccount
 
 + Request
 
+    + Parameters
+
+        + email ... email of user who needs a user account generated or who has forgotten/lost password
+
     + Headers
 
             Authorization: Basic QWxhZGRpbjpvcGVuIHNlc2FtZQZQ
-    
-    + Body
-    
-            {
-                "email": "user_email@example.com"
-            }
+ 
             
 + Response 200 (application/json)
 
         { 
-            "reset_link": "https://subaccount_site_name.waxlrs.com/reset?token=WyJleGFtcGxlIiwiYmF0ZmxlY2tAZXhhbXBsZS5jb20iXQ.BSJvDg.WJzyeRFbOTjkr37j6W2a8lSRisE" 
+            "reset_link": "https://rapid_authoring_anonymous.waxlrs.com/reset?token=WyJleGFtcGxlIiwiYmF0ZmxlY2tAZXhhbXBsZS5jb20iXQ.BSJvDg.WJzyeRFbOTjkr37j6W2a8lSRisE" 
         }
